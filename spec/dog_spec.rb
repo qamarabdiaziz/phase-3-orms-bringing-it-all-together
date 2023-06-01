@@ -42,7 +42,7 @@ describe Dog do
 
   describe "#save" do
     it 'returns an instance of the dog class' do
-      dog = Dog.new(name: "Teddy", breed: "cockapoo") 
+      dog = Dog.new(name: "Teddy", breed: "cockapoo")
       dog.save
 
       expect(dog).to have_attributes(
@@ -54,7 +54,7 @@ describe Dog do
     end
 
     it 'saves an instance of the dog class to the database and then sets the given dogs `id` attribute' do
-      dog = Dog.new(name: "Teddy", breed: "cockapoo") 
+      dog = Dog.new(name: "Teddy", breed: "cockapoo")
       dog.save
 
       expect(DB[:conn].execute("SELECT * FROM dogs WHERE id = 1")).to eq([[1, "Teddy", "cockapoo"]])
@@ -71,9 +71,9 @@ describe Dog do
       dog = Dog.create(name: "Dave", breed: "poodle")
 
       expect(dog).to have_attributes(
-        class: Dog, 
+        class: Dog,
         id: 1,
-        name: "Dave", 
+        name: "Dave",
         breed: "poodle"
       )
     end
@@ -104,13 +104,13 @@ describe Dog do
       ])
     end
   end
-  
+
   describe '.find_by_name' do
     it 'returns an instance of dog that matches the name from the DB' do
       Dog.create(name: "Kevin", breed: "shepard")
       Dog.create(name: "Dave", breed: "poodle")
 
-      dog_from_db = Dog.find_by_name("Kevin") 
+      dog_from_db = Dog.find_by_name("Kevin")
 
       expect(dog_from_db).to have_attributes(
         class: Dog,
